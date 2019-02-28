@@ -4,6 +4,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8801/eureka
+    fetch-registry: true
+    register-with-eureka: true
 spring:
   application:
     name: feign-provider
+management:
+  security:
+    enabled: false
