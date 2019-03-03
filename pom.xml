@@ -14,6 +14,7 @@
         <module>zipkin-server</module>
         <module>feign-provider</module>
         <module>feign-consumer</module>
+        <module>admin-server</module>
     </modules>
 
     <parent>
@@ -22,6 +23,18 @@
         <version>2.1.3.RELEASE</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
