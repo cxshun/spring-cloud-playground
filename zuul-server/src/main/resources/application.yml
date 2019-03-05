@@ -1,0 +1,26 @@
+server:
+  port: 8805
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+zuul:
+  routes:
+    provider:
+      path: /provider/**
+      serviceId: feign-provider
+    consumer:
+      path: /consumer/**
+      serviceId: feign-consumer
+spring:
+  application:
+    name: zuul-server
+  boot:
+    admin:
+      client:
+        url: http://localhost:8804
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8801/eureka
