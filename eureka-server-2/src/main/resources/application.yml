@@ -13,10 +13,10 @@ spring:
     admin:
       client:
         url: http://localhost:8804
+  zipkin:
+    base-url: http://localhost:8803
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-logging:
-  file: application.log

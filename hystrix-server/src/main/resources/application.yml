@@ -1,20 +1,17 @@
 server:
-  port: 8804
+  port: 8806
 spring:
   boot:
     admin:
       client:
         url: http://localhost:8804
-  application:
-    name: admin-server
   zipkin:
     base-url: http://localhost:8803
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  application:
+    name: hystrix-server
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8801/eureka,http://localhost:8802/eureka
+    fetch-registry: true
+    register-with-eureka: true
