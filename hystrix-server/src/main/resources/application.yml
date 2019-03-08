@@ -15,3 +15,8 @@ eureka:
       defaultZone: http://localhost:8801/eureka,http://localhost:8802/eureka
     fetch-registry: true
     register-with-eureka: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

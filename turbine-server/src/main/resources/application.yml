@@ -1,8 +1,8 @@
 server:
-  port: 8803
+  port: 8807
 spring:
   application:
-    name: zipkin-server
+    name: turbine-server
   boot:
     admin:
       client:
@@ -14,11 +14,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8801/eureka,http://localhost:8802/eureka
 management:
-  metrics:
-    web:
-      server:
-        auto-time-requests: false
   endpoints:
     web:
       exposure:
         include: '*'
+turbine:
+  cluster-name-expression: new String('default')
+  app-config: feign-consumer,feign-consumer-2
+  combine-host-port: true
