@@ -19,6 +19,7 @@
         <module>hystrix-server</module>
         <module>feign-consumer-2</module>
         <module>turbine-server</module>
+        <module>eureka-simple-server</module>
     </modules>
 
     <parent>
@@ -46,10 +47,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

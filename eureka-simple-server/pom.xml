@@ -6,19 +6,16 @@
         <artifactId>spring-cloud-playground</artifactId>
         <groupId>com.shun</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>./</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>feign-consumer</artifactId>
+    <artifactId>eureka-simple-server</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-netflix-eureka-server</artifactId>
         </dependency>
     </dependencies>
 
