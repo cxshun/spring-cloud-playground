@@ -8,7 +8,7 @@ eureka:
     register-with-eureka: true
 spring:
   application:
-    name: feign-consumer-2
+    name: feign-consumer
   boot:
     admin:
       client:
@@ -23,3 +23,7 @@ management:
     web:
       exposure:
         include: '*'
+
+logging:
+  level:
+    com.shun.proxy.HelloService: debug
