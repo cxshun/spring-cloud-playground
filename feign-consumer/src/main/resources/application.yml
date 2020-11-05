@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8801/eureka,http://localhost:8802/eureka
+      defaultZone: http://localhost:8801/eureka
     fetch-registry: true
     register-with-eureka: true
 spring:
@@ -26,3 +26,22 @@ management:
 logging:
   level:
     com.shun: debug
+
+---
+# consumer1
+spring:
+  profiles: consumer1
+  application:
+    name: consumer1
+server:
+  port: 8801
+
+---
+spring:
+  profiles: consumer2
+  application:
+    name: consumer2
+# consumer1
+server:
+  port: 8802
+

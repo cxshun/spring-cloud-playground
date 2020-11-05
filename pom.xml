@@ -9,17 +9,14 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>eureka-server-1</module>
-        <module>eureka-server-2</module>
+        <module>eureka-server</module>
         <module>zipkin-server</module>
         <module>feign-provider</module>
         <module>feign-consumer</module>
         <module>admin-server</module>
         <module>zuul-server</module>
         <module>hystrix-server</module>
-        <module>feign-consumer-2</module>
         <module>turbine-server</module>
-        <module>eureka-simple-server</module>
     </modules>
 
     <parent>
