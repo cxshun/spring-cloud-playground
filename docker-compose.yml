@@ -1,0 +1,65 @@
+version: "3.9"
+services:
+  admin-server:
+    build: ./admin-server
+    image: admin-server
+    restart: always
+    depends_on:
+      - eureka-server
+      - zipkin-server
+  eureka-server:
+    build: ./eureka-server
+    image: eureka-server
+    restart: always
+  feign-consumer:
+    build: ./feign-consumer
+    image: feign-consumer
+    restart: always
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - admin-server
+  feign-provider:
+    build: ./feign-provider
+    image: feign-provider
+    restart: always
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - admin-server
+  hystrix-server:
+    build: ./hystrix-server
+    image: hystrix-provider
+    restart: always
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - admin-server
+  turbine-server:
+    build: ./turbine-server
+    image: turbine-server
+    restart: always
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - admin-server
+  zipkin-server:
+    build: ./zipkin-server
+    image: zipkin-server
+    restart: always
+    depends_on:
+      - eureka-server
+  zuul-server:
+    build: ./zuul-server
+    image: zuul-server
+    restart: always
+    ports:
+    - 8080:8805
+    depends_on:
+      - admin-server
+      - eureka-server
+      - feign-consumer
+      - feign-provider
+      - hystrix-server
+      - turbine-server
+      - zipkine-server
