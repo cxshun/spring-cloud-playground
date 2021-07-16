@@ -6,63 +6,131 @@ services:
     container_name: admin-server
     stdin_open: true
     tty: true
+    ports:
+    - 8804:8804
+    volumes:
+    - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "admin-server-1.0-SNAPSHOT"]
     depends_on:
       - eureka-server
       - zipkin-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8804"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   eureka-server:
     build: ./eureka-server
     image: eureka-server
     container_name: eureka-server
     stdin_open: true
     tty: true
+    ports:
+    - 8801:8801
+    command: ["java", "-jar", "eureka-server-1.0-SNAPSHOT.jar"]
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8801"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   feign-consumer:
     build: ./feign-consumer
     image: feign-consumer
     container_name: feign-consumer
     stdin_open: true
     tty: true
+    ports:
+    - 8081:8081
+    volumes:
+      - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "feign-consumer-1.0-SNAPSHOT"]
     depends_on:
       - eureka-server
       - zipkin-server
       - admin-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8081"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   feign-provider:
     build: ./feign-provider
     image: feign-provider
     container_name: feign-provider
     stdin_open: true
     tty: true
+    ports:
+    - 8083:8083
+    volumes:
+      - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "feign-provider-1.0-SNAPSHOT"]
     depends_on:
       - eureka-server
       - zipkin-server
       - admin-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8083"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   hystrix-server:
     build: ./hystrix-server
     image: hystrix-provider
     container_name: hystrix-provider
     stdin_open: true
     tty: true
+    ports:
+    - 8806:8806
+    volumes:
+      - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "hystrix-server-1.0-SNAPSHOT"]
     depends_on:
       - eureka-server
       - zipkin-server
       - admin-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8806"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   turbine-server:
     build: ./turbine-server
     image: turbine-server
     container_name: turbine-server
     stdin_open: true
     tty: true
+    ports:
+      - 8807:8807
+    volumes:
+      - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "turbine-server-1.0-SNAPSHOT"]
     depends_on:
       - eureka-server
       - zipkin-server
       - admin-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8807"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   zipkin-server:
     build: ./zipkin-server
     image: zipkin-server
     container_name: zipkin-server
     stdin_open: true
     tty: true
+    ports:
+    - 8803:8803
+    volumes:
+      - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "zipkin-server-1.0-SNAPSHOT"]
     depends_on:
       - eureka-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8803"
+      retries: 1
+      timeout: 3s
+      interval: 30s
   zuul-server:
     build: ./zuul-server
     image: zuul-server
@@ -71,6 +139,9 @@ services:
     tty: true
     ports:
     - 8080:8805
+    volumes:
+      - ./check_eureka.sh:/var/check_eureka.sh
+    command: ["check_eureka", "zuul-server-1.0-SNAPSHOT"]
     depends_on:
       - admin-server
       - eureka-server
@@ -79,3 +150,8 @@ services:
       - hystrix-server
       - turbine-server
       - zipkin-server
+    healthcheck:
+      test: "/bin/netstat -anpt|grep 8805"
+      retries: 1
+      timeout: 3s
+      interval: 30s
