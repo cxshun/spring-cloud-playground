@@ -4,4 +4,4 @@ MAINTAINER cxshun
 EXPOSE 8801
 COPY target/eureka-server-1.0-SNAPSHOT.jar /var
 WORKDIR /var
-CMD ["java", "-jar", "eureka-server-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "eureka-server-1.0-SNAPSHOT.jar"]

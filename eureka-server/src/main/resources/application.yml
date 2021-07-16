@@ -1,22 +1,20 @@
 server:
   port: 8801
 eureka:
-  instance:
-    hostname: replica1
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://replica2:8802/eureka
+      defaultZone: http://127.0.0.1:8801/eureka
 spring:
   application:
     name: eureka-server
   boot:
     admin:
       client:
-        url: http://localhost:8804
+        url: http://admin-server:8804
   zipkin:
-    base-url: http://localhost:8803
+    base-url: http://zipkin-server:8803
 management:
   endpoints:
     web:
@@ -25,38 +23,3 @@ management:
 logging:
   level:
     com.netflix.discovery: debug
-
-
----
-# profile1
-spring:
-  profiles: server1
-  application:
-    name: server1
-server:
-  port: 8801
-eureka:
-  instance:
-    hostname: replica1
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://replica2:8802/eureka
-
----
-# profile2
-spring:
-  profiles: server2
-  application:
-    name: server2
-server:
-  port: 8802
-eureka:
-  instance:
-    hostname: replica2
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://replica1:8802/eureka

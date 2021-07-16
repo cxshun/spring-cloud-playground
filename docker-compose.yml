@@ -3,18 +3,24 @@ services:
   admin-server:
     build: ./admin-server
     image: admin-server
-    restart: always
+    container_name: admin-server
+    stdin_open: true
+    tty: true
     depends_on:
       - eureka-server
       - zipkin-server
   eureka-server:
     build: ./eureka-server
     image: eureka-server
-    restart: always
+    container_name: eureka-server
+    stdin_open: true
+    tty: true
   feign-consumer:
     build: ./feign-consumer
     image: feign-consumer
-    restart: always
+    container_name: feign-consumer
+    stdin_open: true
+    tty: true
     depends_on:
       - eureka-server
       - zipkin-server
@@ -22,7 +28,9 @@ services:
   feign-provider:
     build: ./feign-provider
     image: feign-provider
-    restart: always
+    container_name: feign-provider
+    stdin_open: true
+    tty: true
     depends_on:
       - eureka-server
       - zipkin-server
@@ -30,7 +38,9 @@ services:
   hystrix-server:
     build: ./hystrix-server
     image: hystrix-provider
-    restart: always
+    container_name: hystrix-provider
+    stdin_open: true
+    tty: true
     depends_on:
       - eureka-server
       - zipkin-server
@@ -38,7 +48,9 @@ services:
   turbine-server:
     build: ./turbine-server
     image: turbine-server
-    restart: always
+    container_name: turbine-server
+    stdin_open: true
+    tty: true
     depends_on:
       - eureka-server
       - zipkin-server
@@ -46,13 +58,17 @@ services:
   zipkin-server:
     build: ./zipkin-server
     image: zipkin-server
-    restart: always
+    container_name: zipkin-server
+    stdin_open: true
+    tty: true
     depends_on:
       - eureka-server
   zuul-server:
     build: ./zuul-server
     image: zuul-server
-    restart: always
+    container_name: zuul-server
+    stdin_open: true
+    tty: true
     ports:
     - 8080:8805
     depends_on:
@@ -62,4 +78,4 @@ services:
       - feign-provider
       - hystrix-server
       - turbine-server
-      - zipkine-server
+      - zipkin-server

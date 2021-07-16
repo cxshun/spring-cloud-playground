@@ -4,4 +4,4 @@ MAINTAINER cxshun
 EXPOSE 8805
 COPY target/zuul-server-1.0-SNAPSHOT.jar /var
 WORKDIR /var
-CMD ["java", "-jar", "zuul-server-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "zuul-server-1.0-SNAPSHOT.jar"]

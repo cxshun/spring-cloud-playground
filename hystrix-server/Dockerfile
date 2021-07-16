@@ -4,4 +4,4 @@ MAINTAINER cxshun
 EXPOSE 8806
 COPY target/hystrix-server-1.0-SNAPSHOT.jar /var
 WORKDIR /var
-CMD ["java", "-jar", "hystrix-server-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "hystrix-server-1.0-SNAPSHOT.jar"]

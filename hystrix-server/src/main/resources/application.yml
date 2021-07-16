@@ -4,15 +4,15 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:8804
+        url: http://admin-server:8804
   zipkin:
-    base-url: http://localhost:8803
+    base-url: http://admin-server:8803
   application:
     name: hystrix-server
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8801/eureka,http://localhost:8802/eureka
+      defaultZone: http://eureka-server:8801/eureka
     fetch-registry: true
     register-with-eureka: true
 management:
